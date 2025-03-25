@@ -1,0 +1,25 @@
+services:
+  ofaire:
+    image: imadpyth/ofaire-service:latest
+    environment:
+      name: AstroPortal
+      url: http://localhost:9393
+      apikey: <API_KEY>
+      cacheFilePath: /app/fairness-assessment
+      cacheEnabled: true
+      CRON_INTERVAL: "* * * * *"
+    volumes:
+      - ofaire_data:/app/data
+    command: /app/run_fair_service.sh
+    depends_on:
+      api-prod:
+        condition: service_healthy
+    network_mode: "host"
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:5000/status" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  ofaire_data:

@@ -1,0 +1,13 @@
+/**/.DS_Store
+/target/
+/build
+.idea
+/fairness-assessment.iml
+/.classpath
+/.project
+/.settings
+/out
+/bin
+/target
+/src/main/resources/config/portals/*/config*.properties
+src/main/resources/config/portals/testportal/
